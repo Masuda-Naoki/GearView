@@ -1,10 +1,10 @@
 class Public::CustomersController < ApplicationController
     before_action :authenticate_customer!
 
-
   def show
     # 顧客マイページを表示
     @customer = current_customer
+    @posts = @customer.posts
   end
 
   def edit

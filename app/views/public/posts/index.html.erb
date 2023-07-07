@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>投稿一覧</h1>
+
+
+    <ul class="post-list">
+      <% @posts.each do |post| %>
+        <li class="post">
+          <h3 class="post-title"><%= post.description %></h3>
+          <p class="post-author">投稿者: <%= post.customer.name %></p>
+          <p class="post-created-at">投稿日時: <%= post.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
+        </li>
+
+  <% end %>
+</div>

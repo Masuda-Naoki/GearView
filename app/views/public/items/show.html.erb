@@ -1,0 +1,13 @@
+<div class="container">
+  <% if @item['mediumImageUrls'].present? %>
+    <div class="item-image">
+      <%= image_tag @item['mediumImageUrls'][0], alt: '商品画像' %>
+    </div>
+  <% else %>
+    <p class="no-image">No image available</p>
+  <% end %>
+  <h1 class="item-name"><%= @item['itemName'] %></h1>
+  <p class="item-price">価格: <%= @item['itemPrice'] %>円</p>
+<%= render 'public/posts/new' %>
+</div>
+

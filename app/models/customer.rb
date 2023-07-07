@@ -14,7 +14,7 @@ class Customer < ApplicationRecord
   def full_kana_name
     last_kana_name + first_kana_name
   end
-  
+  has_many :posts
   validates :last_name, length: { minimum:2, maximum:20 }, presence:true 
   validates :first_name, length: { minimum:2, maximum:20 }, presence:true
   validates :last_kana_name, length: { minimum:2, maximum:20 }, presence:true

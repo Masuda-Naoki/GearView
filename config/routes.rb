@@ -13,6 +13,7 @@ scope module: :public do
     get 'about' => 'homes#about', as: 'about'
     resources :items, only: [:index, :show]
     resources :genres, only: [:index, :show]
+    resources :posts
     get 'customers/information' => 'customers#show', as: 'customer'
     get    'customers/information/edit' => 'customers#edit',   as: 'edit_customer'
     patch  'customers/information' => 'customers#update', as: 'update_customer'

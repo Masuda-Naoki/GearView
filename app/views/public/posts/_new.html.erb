@@ -1,0 +1,5 @@
+<%= form_with model: @post, url: posts_path, local: true do |form| %>
+  <h1>コメントを記入する</h1>
+  <%= form.text_area :description, placeholder: '投稿内容' %><br>
+  <%= form.submit 'コメントする', class: 'btn btn-primary' %>
+<% end %>

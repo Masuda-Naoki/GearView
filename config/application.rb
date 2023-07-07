@@ -18,5 +18,9 @@ module Gearview
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    RakutenWebService.configure do |c|
+      c.application_id = '1036671548446242319'
+      c.affiliate_id = '33abba24.42257a99.33abba25.642b5c94'
+    end
   end
 end

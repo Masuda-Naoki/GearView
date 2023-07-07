@@ -4,3 +4,55 @@
 .custom-bg-color {
   background-color: rgb(241, 235, 229);
 }
+
+/* ページ全体のテキストサイズを調整 */
+body {
+  font-size: 14px;
+}
+
+/* 道具一覧の見出し（h1）のテキストサイズを調整 */
+h1 {
+  font-size: 20px;
+}
+
+/* 検索フォームのテキストフィールドのテキストサイズを調整 */
+form input[type="text"] {
+  font-size: 14px;
+}
+
+/* 検索ボタンのテキストサイズを調整 */
+form input[type="submit"] {
+  font-size: 14px;
+}
+
+/* 道具のリストのテキストサイズを調整 */
+ul li {
+  font-size: 14px;
+}
+
+/* 道具の名前（h3）のテキストサイズを調整 */
+ul li h3 {
+  font-size: 16px;
+}
+
+/* リンクのテキストサイズを調整 */
+a {
+  font-size: 14px;
+}
+
+/* 該当する道具がないメッセージのテキストサイズを調整 */
+p {
+  font-size: 14px;
+}
+.item-name {
+  font-size: 20px;
+}
+
+.item-price,
+.item-description {
+  font-size: 14px;
+}
+
+.item-link {
+  font-size: 12px;
+}
