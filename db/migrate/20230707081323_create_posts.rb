@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :customer_id, null: false
       t.float :rate, null: false
       t.text :description, null: false
+      t.string :item_name, null: false
       t.timestamps
     end
   end

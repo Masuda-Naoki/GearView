@@ -1,12 +1,31 @@
 <div class="container">
   <div class="row">
     <div class="col-1 my-4"></div>
-    <div class="col-11 my-4">
+
+      <div class="container">
+  <h1 class="page-title">キャンプ道具</h1>
+  <%= form_with url: items_path, method: :get, local: true, class: "search-form" do |f| %>
+  <%= f.text_field :keyword, placeholder: 'キーワードを入力', class: "search-input" %>
+    <%= f.submit '検索', class: "search-button" %>
+  <% end %>
+  <table>
+        <tbody>
+        <% @genres.each do |genre| %>
+          <tr>
+            <td>
+              <%= link_to genre.name, items_path(genre_id: genre.id) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+      </table>
+          <div class="col-11 my-4">
           ようこそ、Gearviewへ!<br>
           このサイトは、キャンプ道具のレビューサイトになります。<br>
           会員でない方も道具の閲覧はできますが、<br>
           投稿には会員登録が必要になります。
         </p>
       </div>
+
     </div>
   </div>

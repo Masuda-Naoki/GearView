@@ -19,7 +19,7 @@ scope module: :public do
     patch  'customers/information' => 'customers#update', as: 'update_customer'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'customer_withdraw'
-
+    resources :comments, only: [:create]
 
   end
 

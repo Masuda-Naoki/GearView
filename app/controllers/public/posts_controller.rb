@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.customer_id = current_customer.id
   end
   def index
     @posts = Post.all
@@ -14,12 +15,12 @@ class Public::PostsController < ApplicationController
 
 
 def create
-  @post = current_customer.posts.build(post_params)
-  if @post.save
-    redirect_to post_path(@post), notice: '投稿が作成されました。'
-  else
- render :index
-  end
+  @post = Post.new(post_params)
+  @post.customer_id = current_customer.id
+  @post.rate = 1 # dummy
+  @post.item_id = 1 # dummy
+  @post.save!
+    redirect_to posts_path
 end
 
 
@@ -47,6 +48,6 @@ end
   private
 
 def post_params
-  params.require(:post).permit(:description, :item_id, :customer_id, :rate)
+  params.require(:post).permit(:description, :item_id, :customer_id, :rate, :item_name, :image)
 end
 end
