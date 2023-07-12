@@ -1,13 +1,19 @@
 <div class="container">
   <h1>投稿一覧</h1>
-    <ul class="post-list">
-      <% @posts.each do |post| %>
-        <li class="post">
+  <ul class="post-list">
+    <% @posts.each do |post| %>
+      <li class="post">
+        <p>道具名：<%= post.item_name %></p>
         <% if post.image.attached? %>
         <%= image_tag post.image, class: "post-image" %>
-          <% end %>
-    <p>道具名：<%= post.item_name %></p>
-    <p>説明：<%= post.description %></p>
-
-  <% end %>
+        <% end %>
+        <p>説明：<%= post.description %></p>
+        <%= link_to '投稿詳細', post_path(post),class: 'btn btn-primary' %>
+        <% if post.customer == current_customer %>
+          <%= link_to '削除', post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
+

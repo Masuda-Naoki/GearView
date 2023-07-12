@@ -56,3 +56,8 @@ p {
 .item-link {
   font-size: 12px;
 }
+
+.post-image {
+  max-width: 200px; /* 好みに合わせて適切な幅を設定してください */
+  max-height: 200px; /* 好みに合わせて適切な高さを設定してください */
+}

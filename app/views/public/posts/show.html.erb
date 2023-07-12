@@ -3,5 +3,7 @@
   <h1>投稿詳細</h1>
 
   <p>道具名：<%= @post.item_name %></p>
+ <%= image_tag @post.image, class: "post-image" %>
   <p>説明：<%= @post.description %></p>
+  
 </div>

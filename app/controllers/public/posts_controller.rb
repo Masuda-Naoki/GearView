@@ -40,9 +40,9 @@ end
   end
 
   def destroy
-    @post = current_customer.posts.find(params[:id])
-    @post.destroy
-    redirect_to posts_path, notice: '投稿が削除されました。'
+ @post = current_customer.posts.find(params[:id])
+  @post.destroy
+  redirect_to posts_path, notice: '投稿が削除されました。'
   end
 
   private
