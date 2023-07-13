@@ -1,0 +1,22 @@
+<div id="rate_"></div>
+
+<script>
+$(document).on('turbolinks:load', function() {
+
+  //let elem = document.querySelector('#rate_<%= post.id %>');
+  let elem = document.querySelector('#rate_');
+
+  if (elem == null) return;
+
+  elem.innerHTML = "";
+  let opt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    score: "post[rate]",
+    //readOnly: true,
+  };
+console.log(elem);
+console.log("333");
+  raty(elem, opt);
+});
+</script>

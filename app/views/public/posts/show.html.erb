@@ -1,33 +1,48 @@
-
 <div class="container">
   <h1>投稿詳細</h1>
 
-  <p>道具名：<%= @post.item_name %></p>
- <%= image_tag @post.image, class: "post-image" %>
-  <p>説明：<%= @post.description %></p>
+  <div class="row">
+    <div class="col-md-6">
+      <p>道具名：<%= @post.item_name %></p>
+      <%= image_tag @post.image, class: "post-image" %>
+      <p>説明：<%= @post.description %></p>
+        <div id="rate_<%= @post.id %>"></div><!-- 評価を表示するための要素 -->
+        <td><%= render "public/posts/rateshow", post: @post %></td>
+      <% if @post.favorited_by?(current_customer) %>
+        <p>
+          <%= link_to post_favorites_path(@post), method: :delete do %>
+            ♥<%= @post.favorites.count %> いいね
+          <% end %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to post_favorites_path(@post), method: :post do %>
+            ♡<%= @post.favorites.count %> いいね
+          <% end %>
+        </p>
+      <% end %>
+    </div>
 
-  <h1>コメントする</h1>
-<% @post.comments.each do |comment| %>
-  <p><strong><%= comment.customer_id %>:</strong> <%= comment.comment_content %></p>
-<% end %>
+    <div class="col-md-6">
+      <h2>コメント一覧</h2>
+      <table class="table table-bordered">
+        <tbody>
+          <% @post.comments.each do |comment| %>
+            <tr>
+              <td><strong><%= comment.customer_id %>:</strong></td>
+              <td><%= comment.comment_content %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<%= form_with model:[@post,@comment] do |f| %>
-  <div class="field">
-  <%= f.text_area :comment_content %>
+      <%= form_with model: [@post, @comment] do |f| %>
+        <div class="field">
+          <%= f.text_area :comment_content %>
+        </div>
+        <%= f.submit "コメントする", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
-  <%= f.submit "コメントする" %>
-<% end %>
-  <% if @post.favorited_by?(current_customer) %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
 </div>
+
