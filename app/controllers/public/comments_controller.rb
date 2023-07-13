@@ -1,16 +1,19 @@
 class Public::CommentsController < ApplicationController
   
-  def create
-    @comment = current_customer.comments.new(comment_params)
+def create
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.build(comment_params)
+    @comment.customer = current_customer
     if @comment.save
-      redirect_back(fallback_location: root_path)  #コメント送信後は、一つ前のページへリダイレクトさせる。
+      redirect_to @post, notice: 'コメントが投稿されました。'
     else
-      redirect_back(fallback_location: root_path)  #同上
+      render 'public/posts/show'
     end
-  end
+end
 
   private
+
   def comment_params
-    params.require(:comment).permit(:comment_content, :post_id)  #formにてpost_idパラメータを送信して、コメントへpost_idを格納するようにする必要がある。
+    params.require(:comment).permit(:comment_content)
   end
 end

@@ -5,5 +5,29 @@
   <p>道具名：<%= @post.item_name %></p>
  <%= image_tag @post.image, class: "post-image" %>
   <p>説明：<%= @post.description %></p>
-  
+
+  <h1>コメントする</h1>
+<% @post.comments.each do |comment| %>
+  <p><strong><%= comment.customer_id %>:</strong> <%= comment.comment_content %></p>
+<% end %>
+
+<%= form_with model:[@post,@comment] do |f| %>
+  <div class="field">
+  <%= f.text_area :comment_content %>
+  </div>
+  <%= f.submit "コメントする" %>
+<% end %>
+  <% if @post.favorited_by?(current_customer) %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :delete do %>
+        ♥<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :post do %>
+        ♡<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
 </div>

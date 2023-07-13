@@ -4,7 +4,6 @@
       <!-- 登録情報の表示 -->
       <h2>登録情報</h2>
       <%= link_to '編集する', edit_customer_path(current_customer), class: "btn btn-success" %>
-      <%= link_to '投稿フォーム', new_post_path ,class: 'btn btn-primary' %>
       <table class="table table-bordered">
         <tbody>
           <tr>
@@ -33,6 +32,10 @@
           </tr>
         </tbody>
       </table>
+      </div>
+    <div class="col-md-4">
+      <%= render 'layouts/search' %>
+      <%= link_to '投稿フォーム', new_post_path, class: 'btn btn-primary' %>
     </div>
 </div>
 </div>

@@ -13,14 +13,17 @@ scope module: :public do
     get 'about' => 'homes#about', as: 'about'
     resources :items, only: [:index, :show]
     resources :genres, only: [:index, :show]
-    resources :posts
+    resources :posts do
+      resources :comments, only: [:create]
+      resource :favorites, only: [:create, :destroy]
+    end
     get 'customers/information' => 'customers#show', as: 'customer'
     get    'customers/information/edit' => 'customers#edit',   as: 'edit_customer'
     patch  'customers/information' => 'customers#update', as: 'update_customer'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'customer_withdraw'
-    resources :comments, only: [:create]
-
+    get "search" => "searches#search"
+    get "search_tag" => "searches#search_tag"
   end
 
   namespace :admin do
