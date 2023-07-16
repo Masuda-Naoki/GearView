@@ -1,14 +1,15 @@
 <script>
 $(document).on('turbolinks:load', function() {
-  let elem = document.querySelector('#rate_<%= post %>');
+  let elem = document.querySelector('#rate_<%= post.id %>');
   if (elem == null) return;
   
   elem.innerHTML = "";
   let opt = {  
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
-    score: "post[rate]",
-    readOnly: true,
+    score:  <%= post.rate %> ,
+    readOnly:true
+   
   };
   raty(elem, opt);
 });

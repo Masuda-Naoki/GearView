@@ -1,13 +1,15 @@
 <div class="container">
-  <h1>投稿詳細</h1>
+
 
   <div class="row">
     <div class="col-md-6">
       <p>道具名：<%= @post.item_name %></p>
       <%= image_tag @post.image, class: "post-image" %>
       <p>説明：<%= @post.description %></p>
+      
         <div id="rate_<%= @post.id %>"></div><!-- 評価を表示するための要素 -->
         <td><%= render "public/posts/rateshow", post: @post %></td>
+        
       <% if @post.favorited_by?(current_customer) %>
         <p>
           <%= link_to post_favorites_path(@post), method: :delete do %>

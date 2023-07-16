@@ -7,8 +7,8 @@ $(document).on('turbolinks:load', function() {
   let opt = {
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
-    score: "<%= post.rate %>",
-    readOnly: true,
+    score:<%= post.rate %> ,
+    readOnly:true
   };
   raty(elem, opt);
 });

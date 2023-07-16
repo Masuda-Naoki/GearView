@@ -8,8 +8,10 @@
         <%= image_tag post.image, class: "post-image" %>
         <% end %>
         <p>説明：<%= post.description %></p>
+        
         <div id="rate_<%= post.id %>"></div><!-- 評価を表示するための要素 -->
-        <td><%= render "public/posts/rateindex", post: @post %></td>
+        <td><%= render "public/posts/rateindex", post: post %></td>
+        
         <%= link_to '投稿詳細', post_path(post),class: 'btn btn-primary' %>
         <% if post.customer == current_customer %>
           <%= link_to '削除', post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
