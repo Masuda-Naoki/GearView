@@ -20,9 +20,14 @@ def create
   @post.customer_id = current_customer.id
   @post.rate = 1 # dummy
   @post.item_id = 1 # dummy
-  @post.save!
+  
+  if @post.save
     redirect_to posts_path
+  else
+    render :new
+  end
 end
+
 
 
 
