@@ -18,7 +18,7 @@ class Public::PostsController < ApplicationController
 def create
   @post = Post.new(post_params)
   @post.customer_id = current_customer.id
-  @post.rate = 1 # dummy
+  @post.rate = params[:score]
   @post.item_id = 1 # dummy
   
   if @post.save

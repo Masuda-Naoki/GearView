@@ -1,9 +1,9 @@
 <div class='container'>
   <div class='row'>
       <% if @range == "Customer" %>
-        <%= render 'searches/searchCustomers', word: @word, customers: @customers %>
+        <%= render 'searchCustomers', word: @word, customers: @customers %>
       <% else %>
-        <%= render 'searches/searchPosts', word: @word, posts: @posts %>
+        <%= render 'searchPosts', word: @word, posts: @posts %>
       <% end %>
   </div>
 </div>

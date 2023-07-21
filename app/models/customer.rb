@@ -14,6 +14,20 @@ class Customer < ApplicationRecord
   def full_kana_name
     last_kana_name + first_kana_name
   end
+  
+    def self.looks(search, word)
+    if search == "perfect_match"
+      @customers = Customer.where("name LIKE ?", "#{word}")
+    elsif search == "forward_match"
+      @customers = Customer.where("name LIKE ?", "#{word}%")
+    elsif search == "backward_match"
+      @customers = Customer.where("name LIKE ?", "%#{word}")
+    elsif search == "partial_match"
+      @customers = Customer.where("name LIKE ?", "%#{word}%")
+    else
+      @customers = Customer.all
+    end
+    end
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :posts, dependent: :destroy
