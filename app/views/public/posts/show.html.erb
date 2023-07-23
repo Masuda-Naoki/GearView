@@ -1,32 +1,30 @@
 <div class="container">
-
-
   <div class="row">
-    <div class="col-md-6">
-      <p>道具名：<%= @post.item_name %></p>
-      <%= image_tag @post.image, class: "post-image" %>
-      <p>説明：<%= @post.description %></p>
+    <div class="col-md-6"><br>
+      <h2 class="mb-4">道具名：<%= @post.item_name %></h2>
+      <%= image_tag @post.image, class: "post-image" %><br>
+      <h1 class="mb-3">説明：<%= @post.description %></h1>
       
-        <div id="rate_<%= @post.id %>"></div><!-- 評価を表示するための要素 -->
-        <td><%= render "public/posts/rateshow", post: @post %></td>
+      <div id="rate_<%= @post.id %>"></div><!-- 評価を表示するための要素 -->
+      <td><%= render "public/posts/rateshow", post: @post %></td>
         
       <% if @post.favorited_by?(current_customer) %>
         <p>
           <%= link_to post_favorites_path(@post), method: :delete do %>
-            ♥<%= @post.favorites.count %> いいね
+            ♥ <%= @post.favorites.count %> いいね
           <% end %>
         </p>
       <% else %>
         <p>
           <%= link_to post_favorites_path(@post), method: :post do %>
-            ♡<%= @post.favorites.count %> いいね
+            ♡ <%= @post.favorites.count %> いいね
           <% end %>
         </p>
       <% end %>
     </div>
 
-    <div class="col-md-6">
-      <h2>コメント一覧</h2>
+    <div class="col-md-6 mb-4"><br>
+      <h2 class="mb-4">コメント一覧</h2>
       <table class="table table-bordered">
         <tbody>
           <% @post.comments.each do |comment| %>
@@ -39,12 +37,12 @@
       </table>
 
       <%= form_with model: [@post, @comment] do |f| %>
-        <div class="field">
-          <%= f.text_area :comment_content %>
+        <div class="form-group mt-4">
+          <%= f.text_area :comment_content, class: "form-control" %>
         </div>
         <%= f.submit "コメントする", class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>
+  <%= link_to '　戻る　', posts_path, class: 'btn btn-primary' %>
 </div>
-
