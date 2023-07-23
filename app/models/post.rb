@@ -7,9 +7,9 @@ class Post < ApplicationRecord
   validates :description, presence: true
   validates :item_name, presence: true
   validates :rate, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 5 }
-    def favorited_by?(customer)
-    favorites.exists?(customer_id: customer.id)
-    end
+  def favorited_by?(customer)
+    favorites.exists?(customer_id: customer&.id)
+  end
     
     def self.looks(search, word)
     if search == "perfect_match"

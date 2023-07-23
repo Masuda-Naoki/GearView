@@ -5,6 +5,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new
     @post.customer_id = current_customer.id
   end
+  
   def index
     @posts = Post.all
   end
