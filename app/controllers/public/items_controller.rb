@@ -22,6 +22,7 @@ class Public::ItemsController < ApplicationController
   def show
     @item = RakutenWebService::Ichiba::Item.search(itemCode: params[:id]).first
     @post = Post.new
+    
 
   end
 end

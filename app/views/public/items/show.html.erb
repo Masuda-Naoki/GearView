@@ -8,6 +8,10 @@
   <% end %>
   <h1 class="item-name"><%= @item['itemName'] %></h1>
   <p class="item-price">価格: <%= @item['itemPrice'] %>円</p>
-
+<% if @item['reviewAverage'].present? %>
+    <p class="item-review">評価: <%= @item['reviewAverage'] %> / 5 </p>
+  <% else %>
+    <p class="item-review">レビューはありません</p>
+  <% end %>
 </div>
 
