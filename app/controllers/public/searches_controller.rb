@@ -1,9 +1,9 @@
 class Public::SearchesController < ApplicationController
    before_action :authenticate_customer!
 
-  def search
+  def search 
     @word = params[:word]
-   @posts = Post.looks(params[:search], params[:word])
+    @posts = Post.looks(params[:search], params[:word])
   end
 
   def search_tag

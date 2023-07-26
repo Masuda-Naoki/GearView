@@ -11,17 +11,17 @@ class Post < ApplicationRecord
     favorites.exists?(customer_id: customer&.id)
   end
     
-    def self.looks(search, word)
+  def self.looks(search, word)
     if search == "perfect_match"
-      where("description LIKE ?", "#{word}")
+      where("item_name LIKE ?", "#{word}")
     elsif search == "forward_match"
-      where("description LIKE ?", "#{word}%")
+      where("item_name LIKE ?", "#{word}%")
     elsif search == "backward_match"
-      where("description LIKE ?", "%#{word}")
+      where("item_name LIKE ?", "%#{word}")
     elsif search == "partial_match"
-      where("description LIKE ?", "%#{word}%")
+      where("item_name LIKE ?", "%#{word}%")
     else
       @posts = Post.all
     end
-    end
+  end
 end
