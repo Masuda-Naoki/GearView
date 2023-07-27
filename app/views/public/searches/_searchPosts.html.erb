@@ -4,6 +4,7 @@
     <tr>
       <th>道具名</th>
       <th>説明</th>
+      <th>画像</th> <!-- 新しく追加 -->
     </tr>
   </thead>
   <tbody>
@@ -11,8 +12,15 @@
       <tr>
         <td><%= post.item_name %></td>
         <td><%= post.description %></td>
+        <td>
+          <% if post.image.attached? %>
+            <%= image_tag post.image, class: "post-image" %>
+          <% else %>
+            <!-- 画像がない場合の表示 -->
+            <p>No Image</p>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
