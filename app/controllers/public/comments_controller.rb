@@ -1,15 +1,20 @@
 class Public::CommentsController < ApplicationController
-  
-def create
+  before_action :authenticate_customer!, only: :create
+
+  def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
-    @comment.customer = current_customer
+
+    if customer_signed_in? # 顧客がログインしている場合のみコメントと関連付ける
+      @comment.customer = current_customer
+    end
+
     if @comment.save
       redirect_to @post, notice: 'コメントが投稿されました。'
     else
       render 'public/posts/show'
     end
-end
+  end
 
   private
 

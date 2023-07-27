@@ -1,0 +1,19 @@
+
+<tr>
+  <td><%= post.item_name %></td>
+  <td><%= post.description %></td>
+  <td>
+    <%= link_to "削除", admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  </td>
+  <td>
+    <% if post.image.attached? %>
+      <%= image_tag post.image, class: "card-img-top", width: 200 ,height: 200 %>
+    <% else %>
+      <!-- 画像がない場合のデフォルト表示などを追加 -->
+      <span>No Image</span>
+    <% end %>
+  </td>
+</tr>
+
+
+
