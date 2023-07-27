@@ -8,21 +8,17 @@
       <div id="rate_<%= @post.id %>"></div><!-- 評価を表示するための要素 -->
       <td><%= render "public/posts/rateshow", post: @post %></td>
         
-<% if current_customer.present? %>
-  <% if @post.favorited_by?(current_customer) %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% else %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-<% end %>
+      <p>
+        <% if @post.favorites.exists?(customer: current_customer) %>
+          <%= link_to post_favorites_path(@post), method: :delete do %>
+            ♥<%= @post.favorites.count %> いいね
+          <% end %>
+        <% else %>
+          <%= link_to post_favorites_path(@post), method: :post do %>
+            ♡<%= @post.favorites.count %> いいね
+          <% end %>
+        <% end %>
+      </p>
     </div>
 
     <div class="col-md-6 mb-4"><br>
