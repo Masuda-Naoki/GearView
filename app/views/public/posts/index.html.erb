@@ -5,6 +5,10 @@
   <h1 class="page-title">みんなの投稿</h1>
     </div>
   </div>
+<%= link_to '新着順', posts_path(order: 'newest') %>
+<span class="divider">｜</span>
+<%= link_to '評価の高い順', posts_path(order: 'popular') %>
+
 </div>
 
 <div class="container">

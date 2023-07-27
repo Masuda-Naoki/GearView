@@ -7,7 +7,13 @@ class Public::PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.all
+    if params[:order] == 'newest'
+      @posts = Post.order(created_at: :desc)
+    elsif params[:order] == 'popular'
+      @posts = Post.order(rate: :desc)
+    else
+      @posts = Post.all
+    end
   end
 
   def show
