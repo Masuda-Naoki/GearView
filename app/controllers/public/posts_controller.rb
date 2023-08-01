@@ -28,8 +28,11 @@ def create
   @post.customer_id = current_customer.id
   @post.rate = params[:score]
   @post.item_id = 1 # dummy
-  
+   tags = Vision.get_image_data(post_params[:image])
   if @post.save
+          tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
     redirect_to posts_path
   else
     render :new
