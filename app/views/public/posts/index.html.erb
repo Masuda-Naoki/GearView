@@ -19,6 +19,13 @@
           <% if post.image.attached? %>
             <%= image_tag post.image, class: "card-img-top" %>
           <% end %>
+            <div class="mt-2">
+              <% post.tags.each do |tag| %>
+              <span class="mx-1 px-2 py-1 bg-secondary text-light rounded">
+                <%= tag.name %>
+              </span>
+            <% end %>
+            </div>
           <div class="card-body">
             <h5 class="card-title">道具名：<%= post.item_name %></h5>
             <p class="card-text">説明：<%= post.description %></p>
