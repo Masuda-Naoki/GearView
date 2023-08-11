@@ -23,21 +23,33 @@ class Public::PostsController < ApplicationController
   end
 
 
-def create
-  @post = Post.new(post_params)
-  @post.customer_id = current_customer.id
-  @post.rate = params[:score]
-  @post.item_id = 1 # dummy
-   tags = Vision.get_image_data(post_params[:image])
-  if @post.save
-      tags.each do |tag|
-        @post.tags.create(name: tag)
+  def create
+    @post = Post.new(post_params)
+    @post.customer_id = current_customer.id
+    @post.rate = params[:score]
+    @post.item_id = 1 # dummy
+
+    if post_params[:image].present?
+      tags = Vision.get_image_data(post_params[:image])
+
+      if @post.image.attached?
+        if @post.save
+          tags.each do |tag|
+            @post.tags.create(name: tag)
+          end
+          redirect_to posts_path
+        else
+          render :new
+        end
+      else
+        @post.errors.add(:画像, "の添付に問題があります")
+        render :new
       end
-    redirect_to posts_path
-  else
-    render :new
+    else
+      @post.errors.add(:画像, "を添付してください")
+      render :new
+    end
   end
-end
 
 
 
