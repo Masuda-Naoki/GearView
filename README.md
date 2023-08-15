@@ -32,3 +32,4 @@
 ​
 # 使用素材
 - 楽天API
+- Google Vision API
